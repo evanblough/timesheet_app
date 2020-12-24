@@ -2,7 +2,9 @@
 #define ALARMNOTIFICATION_H
 
 #include <QWidget>
+#include <QVBoxLayout>
 #include <timesheetcell.h>
+#include <chargelistitem.h>
 
 namespace Ui {
 class AlarmNotification;
@@ -21,6 +23,8 @@ public slots:
 private:
     Ui::AlarmNotification *ui;
     QList<TimeSheetCell>* timesheet_cells;
+    QList<ChargeListItem>* charge_list_items;
+    QVBoxLayout charge_list_item_layout;
 };
 
 #endif // ALARMNOTIFICATION_H

@@ -11,6 +11,7 @@ MainWindow::MainWindow(QList<TimeSheetCell>* timesheet_cells, QWidget *parent)
     timesheet_view->setTimesheet_cells(timesheet_cells);
     connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::show_popup);
     connect(ui->pushButton_2, &QPushButton::clicked, this, &MainWindow::show_timesheet);
+    connect(ui->pushButton_3, &QPushButton::clicked, this, &MainWindow::show_charges);
 }
 
 MainWindow::~MainWindow()
@@ -25,5 +26,10 @@ void MainWindow::show_popup(bool checked){
 void MainWindow::show_timesheet(bool checked)
 {
     timesheet_view->setupDisplay();
+}
+
+void MainWindow::show_charges(bool checked)
+{
+    charge_list.show();
 }
 

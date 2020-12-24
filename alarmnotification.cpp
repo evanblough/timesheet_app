@@ -17,11 +17,13 @@ AlarmNotification::~AlarmNotification()
 
 void AlarmNotification::hide_window(bool checked)
 {
-    //Store Meta Data in Table Class
-    TimeSheetCell t(ui->plainTextEdit->toPlainText(), ui->plainTextEdit_2->toPlainText());
-    timesheet_cells->append(t);
+    //Grab Metadata
+
+    //Store Metadata in Table Class
+    //TimeSheetCell t(ui->plainTextEdit->toPlainText(), ui->plainTextEdit_2->toPlainText());
+    //timesheet_cells->append(t);
     //Reset window
-    ui->plainTextEdit->clear();
+    //ui->plainTextEdit->clear();
     ui->plainTextEdit_2->clear();
     this->hide();
 }

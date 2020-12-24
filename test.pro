@@ -10,6 +10,8 @@ CONFIG += c++11
 
 SOURCES += \
     alarmnotification.cpp \
+    chargelist.cpp \
+    chargelistitem.cpp \
     main.cpp \
     mainwindow.cpp \
     timesheetcell.cpp \
@@ -17,12 +19,16 @@ SOURCES += \
 
 HEADERS += \
     alarmnotification.h \
+    chargelist.h \
+    chargelistitem.h \
     mainwindow.h \
     timesheetcell.h \
     timesheetview.h
 
 FORMS += \
     alarmnotification.ui \
+    chargelist.ui \
+    chargelistitem.ui \
     mainwindow.ui \
     timesheetview.ui
 

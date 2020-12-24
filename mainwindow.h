@@ -5,6 +5,7 @@
 #include <alarmnotification.h>
 #include <timesheetcell.h>
 #include <timesheetview.h>
+#include <chargelist.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,9 +21,11 @@ public:
 public slots:
     void show_popup(bool checked);
     void show_timesheet(bool checked);
+    void show_charges(bool checked);
 
 private:
     Ui::MainWindow *ui;
+    ChargeList charge_list;
     AlarmNotification* alarm;
     TimeSheetView* timesheet_view;
     QList<TimeSheetCell> timesheet_cells;
