@@ -490,6 +490,11 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <pointsize>18</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string>Charge Name</string>
      </property>
@@ -525,7 +530,26 @@
     </widget>
    </item>
    <item>
+    <widget class="QPushButton" name="skip_button">
+     <property name="text">
+      <string>Skip</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="clone_button">
+     <property name="text">
+      <string>Clone</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QLabel" name="label_2">
+     <property name="font">
+      <font>
+       <pointsize>18</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string>Description</string>
      </property>
@@ -535,12 +559,11 @@
     </widget>
    </item>
    <item>
-    <widget class="QPlainTextEdit" name="plainTextEdit_2"/>
-   </item>
-   <item>
-    <widget class="QPushButton" name="pushButton">
-     <property name="text">
-      <string>Submit</string>
+    <widget class="QPlainTextEdit" name="plainTextEdit_2">
+     <property name="font">
+      <font>
+       <pointsize>18</pointsize>
+      </font>
      </property>
     </widget>
    </item>

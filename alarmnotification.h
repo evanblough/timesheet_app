@@ -15,16 +15,20 @@ class AlarmNotification : public QWidget
     Q_OBJECT
 
 public:
-    explicit AlarmNotification(QList<TimeSheetCell>* timesheet_cells, QWidget *parent = nullptr);
+    explicit AlarmNotification(QList<TimeSheetCell>* timesheet_cells, QList<ChargeListItem*>* charge_list_items, QWidget *parent = nullptr);
     ~AlarmNotification();
+    void update_charge_buttons();
 public slots:
     void hide_window(bool checked);
+    void skip_button(bool checked);
+    void clone_button(bool checked);
 
 private:
     Ui::AlarmNotification *ui;
     QList<TimeSheetCell>* timesheet_cells;
-    QList<ChargeListItem>* charge_list_items;
+    QList<ChargeListItem*>* charge_list_items;
     QVBoxLayout charge_list_item_layout;
+    QList<QPushButton*> charge_buttons;
 };
 
 #endif // ALARMNOTIFICATION_H

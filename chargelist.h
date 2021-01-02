@@ -16,7 +16,7 @@ class ChargeList : public QWidget
     Q_OBJECT
 
 public:
-    ChargeList(QWidget *parent = nullptr);
+    ChargeList(QList<ChargeListItem*>* charge_list_items, QWidget *parent = nullptr);
     ~ChargeList();
 
 public slots:
@@ -26,7 +26,7 @@ public slots:
 private:
     int charge_index;
     Ui::ChargeList *ui;
-    QList<ChargeListItem*> charge_list_items;
+    QList<ChargeListItem*>* charge_list_items;
     QVBoxLayout charge_item_layout;
 };
 

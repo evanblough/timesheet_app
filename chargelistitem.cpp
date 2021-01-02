@@ -14,3 +14,8 @@ ChargeListItem::~ChargeListItem()
 {
     delete ui;
 }
+
+QString ChargeListItem::getCharge_name() const
+{
+    return charge_name;
+}

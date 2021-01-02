@@ -6,8 +6,10 @@ MainWindow::MainWindow(QList<TimeSheetCell>* timesheet_cells, QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    charge_list = new ChargeList(&charge_list_items);
     timesheet_view = new TimeSheetView();
-    alarm = new AlarmNotification(timesheet_cells);
+    alarm = new AlarmNotification(timesheet_cells, &charge_list_items);
+
     timesheet_view->setTimesheet_cells(timesheet_cells);
     connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::show_popup);
     connect(ui->pushButton_2, &QPushButton::clicked, this, &MainWindow::show_timesheet);
@@ -20,6 +22,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::show_popup(bool checked){
+    alarm->update_charge_buttons();
     alarm->show();
 }
 
@@ -30,6 +33,6 @@ void MainWindow::show_timesheet(bool checked)
 
 void MainWindow::show_charges(bool checked)
 {
-    charge_list.show();
+    charge_list->show();
 }
 

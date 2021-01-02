@@ -18,6 +18,8 @@ public:
     QPushButton* remove_button;
     QString charge_name;
 
+    QString getCharge_name() const;
+
 private:
     Ui::ChargeListItem *ui;
 };

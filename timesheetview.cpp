@@ -70,8 +70,8 @@ void TimeSheetView::setupDisplay()
 
 void TimeSheetView::format_timesheet_cell(QLabel* label){
    label->setFrameStyle(QFrame::Box | QFrame::Shadow::Plain);
-   label->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+   label->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+   label->setFixedHeight(cell_height);
    label->setAlignment(Qt::AlignLeft);
-   label->setMaximumHeight(cell_height);
 }
 

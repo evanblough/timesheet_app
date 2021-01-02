@@ -25,7 +25,7 @@ private:
     QList<TimeSheetCell>* timesheet_cells;
     QGridLayout timesheet_layout;
     void format_timesheet_cell(QLabel* label);
-    const int cell_height = 20;
+    const int cell_height = 60;
 
 };
 

@@ -25,7 +25,8 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
-    ChargeList charge_list;
+    ChargeList* charge_list;
+    QList<ChargeListItem*> charge_list_items;
     AlarmNotification* alarm;
     TimeSheetView* timesheet_view;
     QList<TimeSheetCell> timesheet_cells;
