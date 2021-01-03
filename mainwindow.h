@@ -7,6 +7,8 @@
 #include <timesheetview.h>
 #include <chargelist.h>
 
+#include <QtAndroidExtras/QAndroidJniObject>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -22,6 +24,7 @@ public slots:
     void show_popup(bool checked);
     void show_timesheet(bool checked);
     void show_charges(bool checked);
+    void updateAndroidNotification();
 
 private:
     Ui::MainWindow *ui;
