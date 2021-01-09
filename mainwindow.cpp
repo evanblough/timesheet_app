@@ -10,8 +10,9 @@ MainWindow::MainWindow(QList<TimeSheetCell>* timesheet_cells, QWidget *parent)
     charge_list = new ChargeList(&charge_list_items);
     timesheet_view = new TimeSheetView();
     alarm = new AlarmNotification(timesheet_cells, &charge_list_items);
-
     timesheet_view->setTimesheet_cells(timesheet_cells);
+    popup_timer.start(1000*60);
+    connect(&popup_timer, &QTimer::timeout, this, &MainWindow::updateAndroidNotification);
     connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::show_popup);
     connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::updateAndroidNotification);
     connect(ui->pushButton_2, &QPushButton::clicked, this, &MainWindow::show_timesheet);
@@ -42,9 +43,9 @@ void MainWindow::updateAndroidNotification()
 {
     QString *temp =  new QString("Howdy");
     QAndroidJniObject javaNotification = QAndroidJniObject::fromString(*temp);
-    //org/qtproject/example/notification/NotificationClient
     QAndroidJniObject::callStaticMethod<void>("org/qtproject/example/timesheethelper/NotificationClient",
                                        "notify",
                                        "(Ljava/lang/String;)V",
-                                              javaNotification.object<jstring>());
+                                       javaNotification.object<jstring>());
+    popup_timer.start(1000*60);
 }

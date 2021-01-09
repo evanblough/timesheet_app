@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTimer>
 #include <alarmnotification.h>
 #include <timesheetcell.h>
 #include <timesheetview.h>
@@ -33,6 +34,7 @@ private:
     AlarmNotification* alarm;
     TimeSheetView* timesheet_view;
     QList<TimeSheetCell> timesheet_cells;
+    QTimer popup_timer;
 
 };
 #endif // MAINWINDOW_H
