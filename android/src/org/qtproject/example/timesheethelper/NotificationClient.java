@@ -53,7 +53,13 @@ package org.qtproject.example.timesheethelper;
 import android.graphics.drawable.Icon;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.AlarmManager;
 import android.content.Context;
+import android.content.Intent;
+import android.app.PendingIntent;
+import java.util.Date;
+import android.app.Activity;
+import java.util.Calendar;
 
 public class NotificationClient extends org.qtproject.qt5.android.bindings.QtActivity
 {
@@ -77,5 +83,12 @@ public class NotificationClient extends org.qtproject.qt5.android.bindings.QtAct
 
         m_builder.setContentText(s);
         m_notificationManager.notify(1, m_builder.build());
+        AlarmManager am = (AlarmManager) m_instance.getSystemService(Context.ALARM_SERVICE);
+        Date futureDate = Calendar.getInstance().getTime();
+        Intent intent = new Intent(m_instance, MyBroadcastReceiver.class);
+
+        PendingIntent sender = PendingIntent.getBroadcast(m_instance, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        am.set(AlarmManager.RTC_WAKEUP, futureDate.getTime()+1000*30, sender);
+
     }
 }

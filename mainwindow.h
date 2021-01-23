@@ -34,7 +34,6 @@ private:
     AlarmNotification* alarm;
     TimeSheetView* timesheet_view;
     QList<TimeSheetCell> timesheet_cells;
-    QTimer popup_timer;
 
 };
 #endif // MAINWINDOW_H

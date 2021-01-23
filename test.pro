@@ -45,6 +45,7 @@ DISTFILES += \
     android/gradlew \
     android/gradlew.bat \
     android/res/values/libs.xml \
+    android/src/org/qtproject/example/timesheethelper/MyBroadcastReceiver.java \
     android/src/org/qtproject/example/timesheethelper/NotificationClient.java
 
 contains(ANDROID_TARGET_ARCH,arm64-v8a) {
