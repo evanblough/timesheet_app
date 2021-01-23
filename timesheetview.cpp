@@ -3,6 +3,8 @@
 
 
 const float time_sheet_quantum = 0.2;
+static void clearLayout(QLayout *layout);
+bool init_flag = true;
 
 enum timesheet_columns {
     charge_name_column,
@@ -14,6 +16,7 @@ TimeSheetView::TimeSheetView(QWidget *parent) :
     ui(new Ui::TimeSheetView)
 {
     ui->setupUi(this);
+    QObject::connect(ui->exit_button, &QPushButton::clicked, this,  &QWidget::hide);
     timesheet_layout.setSpacing(0);
     timesheet_layout.setContentsMargins(0,0,0,0);
 }
@@ -30,6 +33,7 @@ void TimeSheetView::setTimesheet_cells(QList<TimeSheetCell> *value)
 
 void TimeSheetView::setupDisplay()
 {
+    clearLayout(&timesheet_layout);
     //Init iterators
     QList<QString> charge_nums;
     QVector<float> charge_totals;
@@ -62,9 +66,12 @@ void TimeSheetView::setupDisplay()
         i++;
     }
     //Add Container to scroll area and display
-    QWidget *holder = new QWidget();
-    holder->setLayout(&timesheet_layout);
-    ui->scrollArea->setWidget(holder);
+    if(init_flag) {
+        QWidget *holder = new QWidget();
+        holder->setLayout(&timesheet_layout);
+        ui->scrollArea->setWidget(holder);
+        init_flag = false;
+    }
     this->show();
 }
 
@@ -73,5 +80,19 @@ void TimeSheetView::format_timesheet_cell(QLabel* label){
    label->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
    label->setFixedHeight(cell_height);
    label->setAlignment(Qt::AlignLeft);
+}
+
+static void clearLayout(QLayout *layout) {
+    QLayoutItem *item;
+    while((item = layout->takeAt(0))) {
+        if (item->layout()) {
+            clearLayout(item->layout());
+            delete item->layout();
+        }
+        if (item->widget()) {
+           delete item->widget();
+        }
+        delete item;
+    }
 }
 

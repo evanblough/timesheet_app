@@ -14,6 +14,7 @@ SOURCES += \
     chargelistitem.cpp \
     main.cpp \
     mainwindow.cpp \
+    qtjavainterface.cpp \
     timesheetcell.cpp \
     timesheetview.cpp
 
@@ -22,6 +23,7 @@ HEADERS += \
     chargelist.h \
     chargelistitem.h \
     mainwindow.h \
+    qtjavainterface.h \
     timesheetcell.h \
     timesheetview.h
 

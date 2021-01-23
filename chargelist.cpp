@@ -8,6 +8,7 @@ ChargeList::ChargeList(QList<ChargeListItem*>* charge_list_items, QWidget *paren
     ui->setupUi(this);
     this->charge_list_items = charge_list_items;
     connect(ui->add_charge_button, &QPushButton::clicked, this, &ChargeList::add_a_new_charge);
+    QObject::connect(ui->exit_button, &QPushButton::clicked, this,  &QWidget::hide);
 }
 
 ChargeList::~ChargeList()
