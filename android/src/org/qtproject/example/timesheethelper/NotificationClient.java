@@ -74,21 +74,24 @@ public class NotificationClient extends org.qtproject.qt5.android.bindings.QtAct
 
     public static void notify(String s)
     {
+        //Create Reminder
         if (m_notificationManager == null) {
             m_notificationManager = (NotificationManager)m_instance.getSystemService(Context.NOTIFICATION_SERVICE);
             m_builder = new Notification.Builder(m_instance);
             m_builder.setSmallIcon(R.drawable.icon);
-            m_builder.setContentTitle("A message from Qt!");
+            m_builder.setContentTitle("Fill out your timesheet");
         }
 
+        //Create Alarm Context to trigger popup in 6 minutes
         m_builder.setContentText(s);
         m_notificationManager.notify(1, m_builder.build());
         AlarmManager am = (AlarmManager) m_instance.getSystemService(Context.ALARM_SERVICE);
         Date futureDate = Calendar.getInstance().getTime();
         Intent intent = new Intent(m_instance, MyBroadcastReceiver.class);
 
+        //Map Broadcast to Reciever
         PendingIntent sender = PendingIntent.getBroadcast(m_instance, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        am.set(AlarmManager.RTC_WAKEUP, futureDate.getTime()+1000*30, sender);
+        am.set(AlarmManager.RTC_WAKEUP, futureDate.getTime()+1000*60, sender);
 
     }
 }

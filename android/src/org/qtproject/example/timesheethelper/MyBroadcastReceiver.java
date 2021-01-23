@@ -15,9 +15,9 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
         private static final String TAG = "MyBroadcastReceiver";
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d(null,"okay cb at least works");
-            Intent intenty = new Intent(context, NotificationClient.class);
-            intenty.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            context.startActivity(intenty);
+            Log.d(null,"Popping up application");
+            Intent qt_app_intent = new Intent(context, NotificationClient.class);
+            qt_app_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            context.startActivity(qt_app_intent);
         }
 }
