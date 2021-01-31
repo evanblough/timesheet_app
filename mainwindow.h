@@ -5,6 +5,7 @@
 #include <QTimer>
 #include <QStandardPaths>
 #include <QFile>
+#include <QDate>
 #include <QTextStream>
 #include <QDebug>
 #include <alarmnotification.h>

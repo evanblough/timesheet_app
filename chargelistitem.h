@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QPushButton>
+#include <iostream>
 
 namespace Ui {
 class ChargeListItem;
@@ -17,7 +18,6 @@ public:
     ~ChargeListItem();
     QPushButton* remove_button;
     QString charge_name;
-
     QString getCharge_name() const;
 
 private:
