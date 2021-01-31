@@ -91,7 +91,7 @@ public class NotificationClient extends org.qtproject.qt5.android.bindings.QtAct
 
         //Map Broadcast to Reciever
         PendingIntent sender = PendingIntent.getBroadcast(m_instance, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        am.set(AlarmManager.RTC_WAKEUP, futureDate.getTime()+1000*60, sender);
+        am.set(AlarmManager.RTC_WAKEUP, futureDate.getTime()+1000*12*60, sender);
 
     }
 }

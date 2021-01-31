@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QDate>
 #include <QTextStream>
+#include <qtjavainterface.h>
 //#include <QBloodyStream>
 #include <QStandardPaths>
 #include <timesheetcell.h>
@@ -25,6 +26,8 @@ public:
     explicit AlarmNotification(QList<TimeSheetCell>* timesheet_cells, QList<ChargeListItem*>* charge_list_items, QWidget *parent = nullptr);
     ~AlarmNotification();
     void update_charge_buttons();
+    void setQt_java_interface(QtJavaInterface *value);
+
 public slots:
     void hide_window(bool checked);
     void skip_button(bool checked);
@@ -38,6 +41,7 @@ private:
     QVBoxLayout charge_list_item_layout;
     QList<QPushButton*> charge_buttons;
     QFile* timesheet_file;
+    QtJavaInterface* qt_java_interface;
 };
 
 #endif // ALARMNOTIFICATION_H

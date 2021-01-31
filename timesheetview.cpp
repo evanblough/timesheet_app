@@ -1,7 +1,6 @@
 #include "timesheetview.h"
 #include "ui_timesheetview.h"
 
-
 const float time_sheet_quantum = 0.2;
 static void clearLayout(QLayout *layout);
 bool init_flag = true;

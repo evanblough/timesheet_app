@@ -29,8 +29,6 @@ public slots:
     void show_popup(bool checked);
     void show_timesheet(bool checked);
     void show_charges(bool checked);
-    void test_write_metadata();
-
 
 private:
     Ui::MainWindow *ui;

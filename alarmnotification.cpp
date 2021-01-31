@@ -56,13 +56,14 @@ void AlarmNotification::hide_window(bool checked)
             timesheet_file->close();
         }
     }
-
+    qt_java_interface->updateAndroidNotification();
     //Store Metadata in Table Class
     this->hide();
 }
 
 void AlarmNotification::skip_button(bool checked)
 {
+    qt_java_interface->updateAndroidNotification();
     this->hide();
 }
 
@@ -70,6 +71,12 @@ void AlarmNotification::clone_button(bool checked)
 {
     TimeSheetCell t(timesheet_cells->last().Charge, timesheet_cells->last().Description);
     timesheet_cells->append(t);
+    timesheet_file->open(QFile::Append);
+    QTextStream out(timesheet_file);
+    out << t.Charge << "\n";
+    out << t.Description.remove('\n') << "\n";
+    timesheet_file->close();
+    qt_java_interface->updateAndroidNotification();
     this->hide();
 }
 
@@ -86,6 +93,11 @@ void AlarmNotification::load_timesheet_cells()
         timesheet_cells->append(t);
     }
     timesheet_file->close();
+}
+
+void AlarmNotification::setQt_java_interface(QtJavaInterface *value)
+{
+    qt_java_interface = value;
 }
 
 void clearLayout(QLayout *layout) {
