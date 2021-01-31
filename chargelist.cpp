@@ -13,6 +13,8 @@ ChargeList::ChargeList(QList<ChargeListItem*>* charge_list_items, QWidget *paren
     QObject::connect(ui->exit_button, &QPushButton::clicked, this,  &QWidget::hide);
 }
 
+static void clearLayout(QLayout *layout);
+
 ChargeList::~ChargeList()
 {
     delete ui;
@@ -70,6 +72,8 @@ void ChargeList::remove_a_charge(bool checked)
 
 void ChargeList::load_charges()
 {
+    charge_list_items->clear();
+    clearLayout(&charge_item_layout);
     charge_list_config_file->open(QFile::ReadWrite);
     QTextStream out(charge_list_config_file);
     QString charge_name;
@@ -81,4 +85,18 @@ void ChargeList::load_charges()
     }
     file_parsed_charge = nullptr;
     charge_list_config_file->close();
+}
+
+static void clearLayout(QLayout *layout) {
+    QLayoutItem *item;
+    while((item = layout->takeAt(0))) {
+        if (item->layout()) {
+            clearLayout(item->layout());
+            delete item->layout();
+        }
+        if (item->widget()) {
+           delete item->widget();
+        }
+        delete item;
+    }
 }

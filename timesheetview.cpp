@@ -41,12 +41,11 @@ void TimeSheetView::setupDisplay()
     //Calculate Hours
     for(TimeSheetCell timesheet_cell : *timesheet_cells) {
         if(charge_nums.contains(timesheet_cell.Charge)){
-            charge_totals[i] += time_sheet_quantum;
+            charge_totals[charge_nums.indexOf(timesheet_cell.Charge)] += time_sheet_quantum;
         }
         else{
             charge_nums.append(timesheet_cell.Charge);
             charge_totals.append(time_sheet_quantum);
-            i++;
         }
     }
     i =0;

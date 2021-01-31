@@ -24,6 +24,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::show_popup(bool checked){
+    charge_list->load_charges();
     alarm->update_charge_buttons();
     alarm->show();
     alarm->raise();
