@@ -60,6 +60,11 @@ import android.app.PendingIntent;
 import java.util.Date;
 import android.app.Activity;
 import java.util.Calendar;
+import android.content.BroadcastReceiver;
+import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
+import org.qtproject.qt5.android.bindings.QtApplication;
 
 public class NotificationClient extends org.qtproject.qt5.android.bindings.QtActivity
 {
@@ -71,6 +76,28 @@ public class NotificationClient extends org.qtproject.qt5.android.bindings.QtAct
     {
         m_instance = this;
     }
+
+public static class MyBroadcastReceiver extends BroadcastReceiver {
+
+        private static final String TAG = "MyBroadcastReceiver";
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //Application app = context.getApplicationContext();
+            Window window = m_instance.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+            window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+            window.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+            /*win.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                          | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+            win.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                          | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+            */
+            Log.d(null,"Popping up application");
+            Intent qt_app_intent = new Intent(context, NotificationClient.class);
+            qt_app_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            context.startActivity(qt_app_intent);
+        }
+}
 
     public static void notify(String s)
     {
@@ -91,7 +118,7 @@ public class NotificationClient extends org.qtproject.qt5.android.bindings.QtAct
 
         //Map Broadcast to Reciever
         PendingIntent sender = PendingIntent.getBroadcast(m_instance, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        am.set(AlarmManager.RTC_WAKEUP, futureDate.getTime()+1000*12*60, sender);
+        am.set(AlarmManager.RTC_WAKEUP, futureDate.getTime()+1000*1*60, sender);
 
     }
 }

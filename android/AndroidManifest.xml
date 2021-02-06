@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <manifest package="org.qtproject.example.timesheethelper" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0" android:versionCode="1" android:installLocation="auto">
     <application android:icon="@drawable/icon" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="@string/app_name">
-        <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="org.qtproject.example.timesheethelper.NotificationClient" android:label="Timesheet App" android:screenOrientation="unspecified">
+        <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="org.qtproject.example.timesheethelper.NotificationClient" android:label="Timesheet App" android:screenOrientation="unspecified" android:showOnLockScreen="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -32,7 +32,7 @@
             -->
             <!-- Splash screen -->
         </activity>
-        <receiver android:name=".MyBroadcastReceiver" android:exported="true">
+        <receiver android:name="org.qtproject.example.timesheethelper.NotificationClient$MyBroadcastReceiver" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.intent.action.INPUT_METHOD_CHANGED"/>
@@ -46,4 +46,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!-- %%INSERT_FEATURES -->
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+<uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
 </manifest>
