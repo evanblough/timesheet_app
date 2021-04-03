@@ -42,6 +42,7 @@ private:
     QList<QPushButton*> charge_buttons;
     QFile* timesheet_file;
     QtJavaInterface* qt_java_interface;
+
 };
 
 #endif // ALARMNOTIFICATION_H

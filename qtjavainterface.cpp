@@ -1,4 +1,7 @@
 #include "qtjavainterface.h"
+#include <Qt>
+#include <QApplication>
+#include <QThread>
 
 QtJavaInterface::QtJavaInterface()
 {

@@ -79,15 +79,32 @@ public class NotificationClient extends org.qtproject.qt5.android.bindings.QtAct
     {
         m_instance = this;
     }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        vibrate();
+    }
 
     //I swear I tried to call this from my broadcast reciever and it was just not having it
     //Very jank
     @Override
-     protected void onStart()
-     {
+    protected void onStart()
+    {
         super.onStart();
         vibrate();
-     }
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        vibrate();
+    }
+
+    @Override
+    protected void onRestart(){
+     super.onRestart();
+     vibrate();
+    }
 
     public static class MyBroadcastReceiver extends BroadcastReceiver {
             private static final String TAG = "MyBroadcastReceiver";
@@ -123,11 +140,12 @@ public class NotificationClient extends org.qtproject.qt5.android.bindings.QtAct
 
         //Map Broadcast to Reciever
         PendingIntent sender = PendingIntent.getBroadcast(m_instance, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        am.set(AlarmManager.RTC_WAKEUP, futureDate.getTime()+1000*1*60, sender);
+        am.set(AlarmManager.RTC_WAKEUP, futureDate.getTime()+1000*1*30, sender);
 
     }
     public static void vibrate(){
         Vibrator v = (Vibrator) m_instance.getSystemService(Context.VIBRATOR_SERVICE);
-        v.vibrate(VibrationEffect.createOneShot(1000, VibrationEffect.DEFAULT_AMPLITUDE));
+        v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+        v.vibrate(500);
     }
 }

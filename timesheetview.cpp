@@ -1,7 +1,7 @@
 #include "timesheetview.h"
 #include "ui_timesheetview.h"
 
-const float time_sheet_quantum = 0.2;
+const float time_sheet_quantum = 0.1;
 static void clearLayout(QLayout *layout);
 bool init_flag = true;
 
@@ -63,6 +63,19 @@ void TimeSheetView::setupDisplay()
         timesheet_layout.setAlignment(charge_total_label, Qt::AlignTop);
         i++;
     }
+    //Generate total
+    float charge_sum =0.0;
+    for(float charge_ammt : charge_totals) charge_sum+=charge_ammt;
+    QLabel *charge_num_label = new QLabel("TOTAL:");
+    QLabel *charge_total_label = new QLabel(QString::number(charge_sum));
+    //Format Labels
+    format_timesheet_cell(charge_num_label);
+    format_timesheet_cell(charge_total_label);
+    //Add Labels
+    timesheet_layout.addWidget(charge_num_label,i,charge_name_column);
+    timesheet_layout.addWidget(charge_total_label,i,charge_total_column);
+    timesheet_layout.setAlignment(charge_num_label, Qt::AlignTop);
+    timesheet_layout.setAlignment(charge_total_label, Qt::AlignTop);
     //Add Container to scroll area and display
     if(init_flag) {
         QWidget *holder = new QWidget();

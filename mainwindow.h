@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <QTime>
 #include <QStandardPaths>
 #include <QFile>
 #include <QDate>
